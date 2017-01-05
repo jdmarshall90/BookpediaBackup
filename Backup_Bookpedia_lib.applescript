@@ -78,6 +78,7 @@ end allFilesNamed
 
 on moveFilesToCommonDirectory(backupFileName, commonDirectory)
 	tell application "Finder"
+			# TODO: only do this if the directory does not already exist. this would save you from having to delete the directory at the beginning of the script
 		make new folder at home with properties {name:commonDirectory}
 	end tell
 	
