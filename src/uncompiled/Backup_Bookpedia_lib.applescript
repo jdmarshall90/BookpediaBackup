@@ -29,7 +29,7 @@ tell application "System Events" to tell process "Bookpedia"
 	set commonDirectory to "Bookpedia_automated_backups"
 	set backupFileName to "Bookpedia_library_backup"
 	
-	my deleteFileNamed(commonDirectory)
+	my deleteFileNamed("~/" & commonDirectory)
 	
 	set libraryCollectionIndex to 1
 	my clickRow(libraryCollectionIndex)
