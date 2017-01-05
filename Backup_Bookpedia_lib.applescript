@@ -26,10 +26,12 @@ tell application "Bookpedia" to activate
 
 tell application "System Events" to tell process "Bookpedia"
 	
-	set commonDirectory to "Bookpedia_automated_backups"
+	set homeDirectory to "~/"
+	set backupDirectoryName to "Bookpedia_automated_backups"
+	set backupDirectoryPath to homeDirectory & backupDirectoryName
 	set backupFileName to "Bookpedia_library_backup"
 	
-	my deleteFileNamed("~/" & commonDirectory)
+	my deleteFileNamed(backupDirectoryPath)
 	
 	set libraryCollectionIndex to 1
 	my clickRow(libraryCollectionIndex)
@@ -52,7 +54,8 @@ tell application "System Events" to tell process "Bookpedia"
 	# HTML
 	my exportViaTabNumber(3, backupFileName)
 	
-	my moveFilesToCommonDirectory(backupFileName, commonDirectory)
+	my createBackupDirectory(backupDirectoryName)
+	my moveFilesToCommonDirectory(homeDirectory & backupFileName, backupDirectoryPath)
 end tell
 
 delay 1
@@ -76,14 +79,16 @@ on allFilesNamed(theFileName)
 	return {theFileName, theFileName & ".bookpedia", theFileName & ".zip"}
 end allFilesNamed
 
-on moveFilesToCommonDirectory(backupFileName, commonDirectory)
+on createBackupDirectory(directoryName)
 	tell application "Finder"
-			# TODO: only do this if the directory does not already exist. this would save you from having to delete the directory at the beginning of the script
-		make new folder at home with properties {name:commonDirectory}
+		# TODO: only do this if the directory does not already exist. this would save you from having to delete the directory at the beginning of the script
+		make new folder at home with properties {name:directoryName}
 	end tell
-	
+end createBackupDirectory
+
+on moveFilesToCommonDirectory(backupFileName, commonDirectory)
 	repeat with theFile in allFilesNamed(backupFileName)
-		do shell script "cd ~/ && mv " & theFile & " " & commonDirectory & "/"
+		do shell script "mv " & theFile & " " & commonDirectory & "/"
 	end repeat
 end moveFilesToCommonDirectory
 
