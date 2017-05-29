@@ -44,12 +44,12 @@ tell application "System Events" to tell process "Bookpedia"
 	# .bookpedia (XML)
 	my exportViaTabNumber(1, backupFileName)
 	
-	delay 2
+	delay 3
 	
 	# ZIP archive
 	my exportViaTabNumber(2, backupFileName)
 	
-	delay 2
+	delay 3
 	
 	# HTML
 	my exportViaTabNumber(3, backupFileName)
@@ -154,3 +154,4 @@ on saveIt()
 		click button 1 of sheet 1 of window 1
 	end tell
 end saveIt
+
