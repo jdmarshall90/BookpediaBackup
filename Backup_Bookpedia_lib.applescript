@@ -151,7 +151,7 @@ end exportViaTabNumber
 
 on saveIt()
 	tell application "System Events" to tell process "Bookpedia"
-		click button 1 of sheet 1 of window 1
+		click button 3 of sheet 1 of window 1
 	end tell
 end saveIt
 
