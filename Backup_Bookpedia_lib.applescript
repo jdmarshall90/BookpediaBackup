@@ -44,12 +44,12 @@ tell application "System Events" to tell process "Bookpedia"
 	# .bookpedia (XML)
 	my exportViaTabNumber(1, backupFileName)
 	
-	delay 3
+	delay 4
 	
 	# ZIP archive
 	my exportViaTabNumber(2, backupFileName)
 	
-	delay 3
+	delay 4
 	
 	# HTML
 	my exportViaTabNumber(3, backupFileName)
